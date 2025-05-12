@@ -58,18 +58,48 @@ public interface Classificavel {
 }
 ```
 
+### 🔍 Busca de Filmes com API OMDb
+
+```java
+
+HttpClient client = HttpClient.newHttpClient();
+HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endereco)).build();
+HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+TituloOmdb meuTituloOmdb = gson.fromJson(response.body(), TituloOmdb.class);
+```
+
+### 💾 Salvando os dados em JSON
+
+```java
+FileWriter escrita = new FileWriter("filmes.json");
+escrita.write(gson.toJson(listaDeTitulos));
+escrita.close();
+```
+
+### ⚠️ Exceção Personalizada
+
+```java
+public class ErroDeConversaoDeAnoException extends RuntimeException {
+    public ErroDeConversaoDeAnoException(String mensagem) {
+        super(mensagem);
+    }
+}
+```
+
 ## 🎯 Aprendizados
 
 - Aplicação prática dos quatro pilares da POO.
 - Organização do código em pacotes e classes especializadas.
+- Integração com **API externa** para busca de dados.
+- Uso da biblioteca **Gson** para conversão entre JSON e objetos Java.
 - Criação e uso de **interfaces** para contratos de comportamento.
 - Implementação de **polimorfismo** utilizando referências genéricas.
 - Boas práticas de encapsulamento e acesso controlado a atributos.
 
 ## 🔍 Reflexões
 
-Trabalhar com POO através do projeto ScreenMatch foi essencial para entender como organizar melhor o código, promover reuso e criar sistemas mais flexíveis e fáceis de manter.  
-A prática dos conceitos de **herança**, **polimorfismo** e **interfaces** foi fundamental para consolidar o aprendizado.
+Trabalhar com POO através do projeto ScreenMatch foi essencial para entender como organizar melhor o código, promover reuso e criar sistemas mais flexíveis e fáceis de manter.
+A prática dos conceitos de herança, polimorfismo, interfaces e integração com serviços externos foi fundamental para consolidar o aprendizado.
 
 ## 👩‍🏫 Créditos
 
